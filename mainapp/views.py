@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 # функции = вьюхи = контроллеры
 def index(request):
+    a = 1
     return render(request, 'mainapp/index.html')
 
 
