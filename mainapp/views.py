@@ -1,4 +1,11 @@
+import os
+import json
+
 from django.shortcuts import render
+
+from mainapp.models import Product, ProductCategory
+
+dir = os.path.dirname(__file__)
 
 
 # функции = вьюхи = контроллеры
@@ -8,7 +15,11 @@ def index(request):
 
 
 def products(request):
-    context = {'title': 'GeekShop - Каталог'}
+    context = {
+        'title': 'GeekShop - Каталог',
+        'products': Product.objects.all(),
+        'categories': ProductCategory.objects.all(),
+    }
     return render(request, 'mainapp/products.html', context)
 
 
@@ -27,4 +38,6 @@ def test_context(request):
             {'name': 'Черные туфли на платформе с 3 парами люверсов Dr Martens 1461 Bex', 'price': '13 590,00'},
         ]
     }
+    file_path = os.path.join(dir, 'fixtures/products.json')
+    context.update(json.load(open(file_path, encoding='utf-8')))
     return render(request, 'mainapp/test-context.html', context)
