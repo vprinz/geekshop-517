@@ -1,3 +1,8 @@
+import os
+import json
+
+dir = os.path.dirname(__file__)
+
 from django.shortcuts import render
 
 
@@ -27,4 +32,6 @@ def test_context(request):
             {'name': 'Черные туфли на платформе с 3 парами люверсов Dr Martens 1461 Bex', 'price': '13 590,00'},
         ]
     }
+    file_path = os.path.join(dir, 'fixtures/products.json')
+    context.update(json.load(open(file_path, encoding='utf-8')))
     return render(request, 'mainapp/test-context.html', context)
