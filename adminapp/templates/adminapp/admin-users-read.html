@@ -105,7 +105,7 @@
                                 <tbody>
                                 {% for user in users %}
                                     <tr>
-                                        <td><a href="#" style="color: dodgerblue">{{ user.username }}</a></td>
+                                        <td><a href="{% url 'admin_staff:admin_users_update' user.id %}" style="color: dodgerblue">{{ user.username }}</a></td>
                                         <td>{{ user.first_name }}</td>
                                         <td>{{ user.last_name }}</td>
                                         <td>{{ user.email }}</td>
